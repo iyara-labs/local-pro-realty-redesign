@@ -1,0 +1,22 @@
+.next/
+node_modules/
+out/
+dist/
+build/
+
+.env
+.env.*
+!.env.example
+
+.DS_Store
+*.log
+*.tsbuildinfo
+
+# Local design captures and dropped-in experiments.
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+
+# Unused low-resolution client grabs copied during exploration.
+public/images/localpro-*
