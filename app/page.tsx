@@ -169,6 +169,62 @@ const proofHighlights = [
   },
 ];
 
+const localProUrl = "https://localprorealty.com";
+
+const footerLinkGroups = [
+  {
+    title: "Search",
+    links: [
+      ["All Listings", `${localProUrl}/listing`],
+      ["Featured Listings", `${localProUrl}/featured-listings`],
+      ["Mortgage Calculator", `${localProUrl}/mortgage-calculator`],
+    ],
+  },
+  {
+    title: "Sell",
+    links: [
+      ["Sell My Home", `${localProUrl}/sell`],
+      ["Home Valuation", `${localProUrl}/evaluation`],
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      ["About Us", `${localProUrl}/about`],
+      ["Team", `${localProUrl}/realtors`],
+      ["Contact", `${localProUrl}/contact`],
+      ["Commercial", "https://localprorealestate.com"],
+    ],
+  },
+];
+
+const footerMarkets = [
+  "Arlington",
+  "Carrollton",
+  "Dallas",
+  "Denton",
+  "Fort Worth",
+  "Frisco",
+  "Grapevine",
+  "Grand Prairie",
+  "Irving",
+  "Plano",
+  "McKinney",
+  "Odessa",
+  "Prosper",
+  "Richardson",
+  "Rockwall",
+  "Trophy Club",
+  "Midland",
+  "Wylie",
+];
+
+function cityListingHref(city: string) {
+  const condition = encodeURIComponent(JSON.stringify({ location: { city: [`${city}, TX`] } }));
+  const zoom = city === "Dallas" ? 10 : 11;
+  return `${localProUrl}/listing?condition=${condition}&page=1&uiConfig=%7B%7D&zoom=${zoom}`;
+}
+
 function clamp01(value: number) {
   return Math.max(0, Math.min(1, value));
 }
@@ -588,56 +644,72 @@ function LocalProof() {
 }
 
 function Contact() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
-
-  useEffect(() => {
-    if (!isClicked) return;
-    const timer = window.setTimeout(() => setShowDetails(true), 420);
-    return () => window.clearTimeout(timer);
-  }, [isClicked]);
-
   return (
-    <footer className={`work-together ${isClicked ? "is-clicked" : ""} ${showDetails ? "is-ready" : ""}`} id="contact">
-      <div className="work-together__content" data-reveal>
-        <button
-          className="work-together__trigger"
-          type="button"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={() => setIsClicked(true)}
-          aria-label="Show LocalPRO Realty contact details"
-        >
-          <span className={isHovered && !isClicked ? "is-hovered" : ""}>Talk to a PRO</span>
-          <span className={`work-together__muted ${isHovered && !isClicked ? "is-hovered" : ""}`}>agent today</span>
-          <i aria-hidden="true">↗</i>
-        </button>
+    <footer className="site-footer" id="contact">
+      <div className="site-footer__inner">
+        <div className="site-footer__top">
+          <div className="site-footer__brand">
+            <a href={localProUrl} aria-label="Local Pro Realty home">
+              <strong>LocalPRO</strong>
+              <span>Realty</span>
+            </a>
+            <p>
+              Dedicated to enhancing the success of our agents so they can deliver superior guidance, service, and
+              outcomes for our clients.
+            </p>
+          </div>
 
-        <div className="work-together__intro">
-          <p>
-            Dedicated to enhancing the success of our agents so they can deliver
-            superior guidance, service, and outcomes for our clients.
-          </p>
-          <a href="mailto:tricia@localprorealty.com">tricia@localprorealty.com</a>
+          <div className="site-footer__contact">
+            <span>Talk to a PRO</span>
+            <h2>Tricia Andrews</h2>
+            <div className="site-footer__actions">
+              <a href="tel:+14694228841">Call Tricia</a>
+              <a href="mailto:tricia@localprorealty.com">Email Tricia</a>
+            </div>
+            <address>
+              <strong>LocalPRO Realty, LLC</strong>
+              <span>License ID: 0543406</span>
+              <span>700 Parker Sq, Flower Mound, TX 75028</span>
+            </address>
+          </div>
         </div>
 
-        <div className="work-together__details" aria-hidden={!showDetails}>
-          <span>Contact</span>
-          <h2>Tricia Andrews</h2>
-          <div className="work-together__actions">
-            <a href="tel:+14694228841">Call Tricia</a>
-            <a href="mailto:tricia@localprorealty.com">Email Tricia</a>
+        <div className="site-footer__directory">
+          {footerLinkGroups.map((group) => (
+            <nav key={group.title} aria-label={`${group.title} links`} className="site-footer__group">
+              <h3>{group.title}</h3>
+              {group.links.map(([label, href]) => (
+                <a key={label} href={href}>
+                  {label}
+                </a>
+              ))}
+            </nav>
+          ))}
+
+          <nav className="site-footer__markets" aria-label="Texas real estate markets">
+            <h3>Texas real estate markets</h3>
+            <div>
+              {footerMarkets.map((city) => (
+                <a key={city} href={cityListingHref(city)}>
+                  {city} Real Estate
+                </a>
+              ))}
+            </div>
+          </nav>
+        </div>
+
+        <div className="site-footer__bottom">
+          <p>
+            IDX information is provided exclusively for consumers&apos; personal, non-commercial use. Information is
+            deemed reliable but not guaranteed.
+          </p>
+          <div>
+            <a href="https://www.trec.texas.gov/forms/consumer-protection-notice">Consumer Protection Notice</a>
+            <a href={`${localProUrl}/privacy-policy`}>Privacy Policy</a>
+            <a href={`${localProUrl}/sitemap`}>Sitemap</a>
           </div>
-          <address>
-            <strong>Tricia Andrews</strong>
-            <span>LocalPRO Realty, LLC</span>
-            <span>License ID: 0543406</span>
-            <span>700 Parker Sq, Flower Mound, TX 75028</span>
-          </address>
         </div>
       </div>
-
     </footer>
   );
 }
