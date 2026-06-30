@@ -512,8 +512,8 @@ function LocalProof() {
       <div className="local-proof__inner">
         <div className="local-proof__glow" aria-hidden="true" />
         <p className="local-proof__lead" data-reveal>
-          LocalPRO helps buyers and sellers move faster by connecting city search, home valuation, and neighborhood
-          market data to one clear next step.
+          At Local Pro Realty, we&apos;re not just about buying and selling properties - we&apos;re about making your
+          real estate journey a seamless and rewarding experience.
         </p>
 
         <div className="local-proof__grid" data-reveal>
@@ -529,7 +529,7 @@ function LocalProof() {
                 <span>market signals</span>
               </figcaption>
             </div>
-            <div className="local-proof__signalbar" aria-label="LocalPRO lead paths">
+            <div className="local-proof__signalbar" aria-label="Local Pro Realty lead paths">
               <span>
                 <small>Lead paths</small>
                 <b>Buy, sell, and valuation</b>
@@ -571,13 +571,14 @@ function LocalProof() {
               </div>
             </div>
 
-            <h2 id="local-proof-title">Better local search with real market signals</h2>
+            <h2 id="local-proof-title">Everything you&apos;ll need along the way.</h2>
             <p>
-              The same fields LocalPRO surfaces inside its neighborhood pages stay close to the conversion path:
-              average sales price, median sales price, total listings, and population.
+              With experts throughout DFW and West Texas, we are hyper local, allowing us to walk alongside our
+              clients at every stage of their journey. With innovative technology and unrivaled service, we ensure
+              that your home is connected with buyers, locally and worldwide.
             </p>
-            <a href="#markets" aria-label="Explore LocalPRO featured markets">
-              Explore LocalPRO markets <span aria-hidden="true">↗</span>
+            <a href="#markets" aria-label="Explore featured markets">
+              Explore featured markets <span aria-hidden="true">↗</span>
             </a>
           </aside>
         </div>
